@@ -23,6 +23,9 @@ app.preferences.rulerUnits = Units.PIXELS;
 // Hide layer
 hideLayerByName(tempDoc.layers, "Chars");
 
+// Rasterize everything before resizing
+tempDoc.flatten();
+
 // Resize temporary document
 tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
 

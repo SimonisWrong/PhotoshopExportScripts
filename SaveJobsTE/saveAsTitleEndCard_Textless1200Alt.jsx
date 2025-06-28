@@ -26,6 +26,9 @@ hideLayerByName(tempDoc.layers, "Full chapter");
 hideLayerByName(tempDoc.layers, "Textless");
 hideLayerByName(tempDoc.layers, "Text");
 
+// Rasterize everything before resizing
+tempDoc.flatten();
+
 // Resize temporary document
 tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
 

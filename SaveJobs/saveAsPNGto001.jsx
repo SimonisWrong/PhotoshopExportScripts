@@ -20,6 +20,9 @@ var tempDoc = originalDoc.duplicate();
 var originalRulerUnits = app.preferences.rulerUnits;
 app.preferences.rulerUnits = Units.PIXELS;
 
+// Rasterize everything before resizing
+tempDoc.flatten();
+
 // Resize temporary document
 // tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
 

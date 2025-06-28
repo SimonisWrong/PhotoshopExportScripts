@@ -26,8 +26,11 @@ hideLayerByName(tempDoc.layers, "Full chapter");
 showLayerByName(tempDoc.layers, "Textless");
 showLayerByName(tempDoc.layers, "Text");
 
+// Rasterize everything before resizing
+tempDoc.flatten();
+
 // Resize temporary document
-tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
+//tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
 
 // Get filename without extension
 var docName = tempDoc.name.replace(/\.[^\.]+$/, '').replace(/\s+copy$/, ""); // strips trailing " copy"

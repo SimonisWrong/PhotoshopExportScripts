@@ -1,14 +1,15 @@
-// saveAsPNGTo032.jsx
+// saveAsTitleEndCard.jsx
 
 // Load utility functions
 $.evalFile("D:/Program Files/Photoshop Scripts/Utilities/layer-utils.jsx"); // Using absolute path
 
 // ====== CONFIG ======
-var targetWidth = 1200; // Change this for each resolution (1200, 1600, etc)
+var targetWidth = 1600; // Change this for each resolution (1200, 1600, etc)
 var L0FolderName = "D:/_Photoshop Exports";
 var L1folderName = "ChapterExport";
-var L2folderName = "032 Textless 1200px";
+var L2folderName = "100 TitleEndCards";
 var exportFolderName = L0FolderName + "/" + L1folderName + "/" + L2folderName;
+var suffix = "Default1600";
 // =====================
 
 var originalDoc = app.activeDocument;
@@ -21,20 +22,22 @@ var originalRulerUnits = app.preferences.rulerUnits;
 app.preferences.rulerUnits = Units.PIXELS;
 
 // Hide layer
-hideLayerByName(tempDoc.layers, "Text");
+showLayerByName(tempDoc.layers, "Header");
+showLayerByName(tempDoc.layers, "Please support my series!");
+showLayerByName(tempDoc.layers, "subscription methods:");
 
 // Rasterize everything before resizing
 tempDoc.flatten();
 
 // Resize temporary document
-tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
+//tempDoc.resizeImage(UnitValue(targetWidth, "px"), null, null, ResampleMethod.BICUBICSHARPER);
 
 // Get filename without extension
 var docName = tempDoc.name.replace(/\.[^\.]+$/, '').replace(/\s+copy$/, ""); // strips trailing " copy"
 var exportFolder = new Folder(exportFolderName);
 if (!exportFolder.exists) exportFolder.create();
 
-var exportFile = new File(exportFolder + "/" + docName + ".png"); // Export to subfolder
+var exportFile = new File(exportFolder + "/" + docName + suffix + ".png"); // Export to subfolder
 
 var exportOptions = new ExportOptionsSaveForWeb();
 exportOptions.format = SaveDocumentType.PNG;
@@ -53,4 +56,4 @@ tempDoc.close(SaveOptions.DONOTSAVECHANGES);
 app.activeDocument = originalDoc;
 
 // Restore settings
-app.preferences.rulerUnits = originalRulerUnits;
+app.preferences.rulerUnits = originalRulerUnits; 
